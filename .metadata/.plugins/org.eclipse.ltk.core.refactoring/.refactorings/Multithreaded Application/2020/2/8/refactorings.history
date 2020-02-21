@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;bsu.rct.group8.chernyak.lab6.var3c.Rectangle&apos; to &apos;Obstacle&apos;&#x0D;&#x0A;- Original project: &apos;Multithreaded Application&apos;&#x0D;&#x0A;- Original element: &apos;bsu.rct.group8.chernyak.lab6.var3c.Rectangle&apos;&#x0D;&#x0A;- Renamed element: &apos;bsu.rct.group8.chernyak.lab6.var3c.Obstacle&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Rectangle&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;bsu.rct.group8.chernyak.lab6.var3c{Rectangle.java[Rectangle" matchStrategy="1" name="Obstacle" qualified="false" references="true" similarDeclarations="false" stamp="1582283863372" textual="false" version="1.0"/>
+</session>
