@@ -1,7 +1,6 @@
 package bsu.rct.group8.chernyak.lab6.var3c;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 
 public class Obstacle {
 
@@ -61,13 +60,6 @@ public class Obstacle {
  
 		color = new Color((float)Math.random(), (float)Math.random(), (float)Math.random());
 	}
-	
-	public static void paint(Graphics2D canvas) { 
-		//System.out.println(x);
-		color = new Color(155, 215, 255);
-		canvas.setColor(color);
-		canvas.fillRect(x, y, width, height);
-	} 
 	
 	
 }

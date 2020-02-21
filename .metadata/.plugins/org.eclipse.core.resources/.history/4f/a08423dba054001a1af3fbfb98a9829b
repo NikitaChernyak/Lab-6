@@ -3,7 +3,6 @@ package bsu.rct.group8.chernyak.lab6.var3c;
 import java.awt.Color; 
 import java.awt.Graphics2D; 
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 
 public class BouncingBall implements Runnable {
 
@@ -62,81 +61,47 @@ public class BouncingBall implements Runnable {
 	// то завершается и поток 
 	public void run() { 
 		try { 
-			// Крутим бесконечный цикл, т.е. пока нас не прервут,  
+			// Крутим бесконечный цикл, т.е. пока нас не прервут, 
 			// мы не намерены завершаться 
 			while(true) { 
 				// Синхронизация потоков на самом объекте поля 
-				// Если движение разрешено - управление будет  
+				// Если движение разрешено - управление будет
 				// возвращено в метод 
-				// В противном случае - активный поток заснет 
+				// В противном случае - активный поток заснѐт
 				field.canMove(this);
-				//
-                if((x+speedX >= Obstacle.getX()) && (x+speedX <= Obstacle.getWidth()+Obstacle.getX()) && (y+speedY <= Obstacle.getY()))   
-                	if(y + speedY >= Obstacle.getY()-radius){
-                		// Достигли верхней плоскотси прямоугольника, отскакиваемся вверх                 
-                		speedY = -speedY;       
-                		y = Obstacle.getY()-radius;
-                    }
-              
-                if((y + speedY >= Obstacle.getY()) && (y+ speedY <= Obstacle.getHeight()+Obstacle.getY()) && (x+speedX <= Obstacle.getX()))
-                	if((x + speedX>= Obstacle.getX()-radius)){
-                        // Достигли правой плоскотси прямоугольника, отскакиваемся влево
-                		speedX = -speedX;    
-                		x = Obstacle.getX()-radius;
-                    }
-                                
-                if((x+speedX >= Obstacle.getX()) && (x+speedX <= Obstacle.getWidth()+Obstacle.getX()) && (y+speedY >= Obstacle.getY()+Obstacle.getHeight()))    
-                	if((y + speedY<= Obstacle.getY()+Obstacle.getHeight()+radius)){
-                		// Достигли нижней плоскотси прямоугольника, отскакиваемся вниз             
-                		speedY = -speedY; 
-                		y = Obstacle.getY()+Obstacle.getHeight()+radius;
-                     
-                	}
-
-                if((y + speedY >= Obstacle.getY()) && (y+ speedY <= Obstacle.getHeight()+Obstacle.getY()) && x+speedX >= Obstacle.getX()+Obstacle.getWidth())         
-                	if((x + speedX<= Obstacle.getX()+Obstacle.getWidth()+radius)){
-                                            // Достигли левой плоскотси прямоугольника, отталкиваемся вправо                   
-                		speedX = -speedX;    
-                		x = Obstacle.getX()+Obstacle.getWidth()+radius;                 
-                	}
-                                
-				if (x + speedX <= radius) {
-					// Достигли левой стенки, отскакиваем право
+				if (x + speedX <= radius) { 
+					// Достигли левой стенки, отскакиваем право 
 					speedX = -speedX;
-					x = radius;
-				}
-				else if (x + speedX >= field.getWidth() - radius) {
-						// Достигли правой стенки, отскок влево
-						speedX = -speedX;
-						x=new Double(field.getWidth()-radius).intValue();
-				}
-				else if (y + speedY <= radius) {
-					// Достигли верхней стенки
-					speedY = -speedY;
-					y = radius;
-				}
-				else if (y + speedY >= field.getHeight() - radius) { 
-					// Достигли нижней стенки 
+					x = radius; } 
+				else if (x + speedX >= field.getWidth() - radius) { 
+					// Достигли правой стенки, отскок влево 
+					speedX = -speedX; 
+					x = new Double(field.getWidth()-radius).intValue(); 
+				} else if (y + speedY <= radius) { 
+					// Достигли верхней стенки 
 					speedY = -speedY; 
-					y=new Double(field.getHeight()-radius).intValue(); 
-				}
-				else { 
-					// Просто смещаемся 
-					x += speedX; 
-					y += speedY; 
-				} 
+					y = radius; 
+					} else if (y + speedY >= field.getHeight() - radius) { 
+						// Достигли нижней стенки 
+						speedY = -speedY; 
+						y = new Double(field.getHeight()-radius).intValue(); 
+						} else { 
+							// Просто смещаемся
+							x += speedX;
+							y += speedY; }
 				
-				// Засыпаем на X миллисекунд, где X определяется  
+				// Засыпаем на X миллисекунд, где X определяется 
 				// исходя из скорости 
 				// Скорость = 1 (медленно), засыпаем на 15 мс. 
 				// Скорость = 15 (быстро), засыпаем на 1 мс. 
-				Thread.sleep(16-speed); 
-				} 
-			} catch (InterruptedException ex) { 
-				// Если нас прервали, то ничего не делаем  
-				// и просто выходим (завершаемся) 
-			} 
-		 
+				Thread.sleep(16-speed);
+				}
+			
+		} catch (InterruptedException ex) { 
+			// Если нас прервали, то ничего не делаем 
+			// и просто выходим (завершаемся)
+		}
+		
 	}
 	
 

@@ -64,7 +64,7 @@ public class Obstacle {
 	
 	public static void paint(Graphics2D canvas) { 
 		//System.out.println(x);
-		color = new Color(155, 215, 255);
+		//color = new Color(0, 215, 255);
 		canvas.setColor(color);
 		canvas.fillRect(x, y, width, height);
 	} 

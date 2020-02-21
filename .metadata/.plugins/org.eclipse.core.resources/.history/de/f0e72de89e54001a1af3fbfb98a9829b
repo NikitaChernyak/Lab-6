@@ -8,25 +8,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList; 
 import javax.swing.JPanel; 
 import javax.swing.Timer; 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
-import java.awt.geom.GeneralPath;
-import java.awt.geom.Line2D;
 
 @SuppressWarnings("serial")
 public class Field extends JPanel {
 
 	// ‘лаг приостановленности движени€ 
 	private boolean paused; 
-
 	// ƒинамический список скачущих м€чей 
 	private ArrayList<BouncingBall> balls = new ArrayList<BouncingBall>(10);
-	
-	private double dragOffsetX;
-	private double dragOffsetY;
-	
-	boolean isDragged;
 	
 	//  ласс таймер отвечает за регул€рную генерацию событий ActionEvent 
 	// ѕри создании его экземпл€ра используетс€ анонимный класс, 
@@ -54,9 +43,6 @@ public class Field extends JPanel {
 		// ѕоследовательно запросить прорисовку от всех м€чей из списка 
 		for (BouncingBall ball : balls)  
 			ball.paint(canvas); 
-		
-		Graphics2D path = (Graphics2D) g;
-		Obstacle.paint(path);
 	}
 	
 	// ћетод добавлени€ нового м€ча в список 
@@ -65,8 +51,6 @@ public class Field extends JPanel {
 		// ¬сю инициализацию положени€, скорости, размера, цвета 
 		// BouncingBall выполн€ет сам в конструкторе 
 		balls.add(new BouncingBall(this)); 
-		addMouseMotionListener(new MouseMotionHandler());
-		addMouseListener(new MouseHandler());
 	}
 	
 	// ћетод синхронизированный, т.е. только один поток может 
@@ -95,59 +79,5 @@ public class Field extends JPanel {
 		}
 		
 	}
-	
-	public class MouseHandler extends MouseAdapter {
-		
-		public MouseHandler() {
-			
-		}
-		
-		public void mouseClicked(MouseEvent e) {
-			
-		}
-		
-		public void mouseEntered(MouseEvent e) {
-			
-		}
-		
-		public void mouseExited(MouseEvent e) {
-			
-		}
-		
-		public void mousePressed(MouseEvent e) {
-			if ((e.getModifiers() & MouseEvent.BUTTON2_MASK) == 0)
-				if(Obstacle.contains(e.getX(), e.getY())) {
-					isDragged = true;
-					dragOffsetX = e.getX()-Obstacle.getX();
-					dragOffsetY = e.getY()-Obstacle.getY();
-				}
-				else 
-					isDragged = false;
-			repaint();
-		}
-		
-		public void mouseReleased(MouseEvent e) {
-			
-			}
-	}
-		
-	
-	public class MouseMotionHandler implements MouseMotionListener {
-				
-		public void mouseDragged(MouseEvent e){
-			if (isDragged) {
-			
-				// ”станавливаем флаг перетаскивани€
-				Obstacle.setPos(e.getX()-dragOffsetX, e.getY()-dragOffsetY);
-
-			}
-		}
-		
-		public void mouseMoved(MouseEvent e) {
-			
-		} 
-		
-	}
-
 	
 }
